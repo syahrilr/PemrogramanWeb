@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Statistika</title>
+        <link rel="stylesheet" href="stats.css">
+    </head>
+    <body>
+            <form action="" id="form">
+                <a href="index.html"><img id="icon" src="home.png" alt="home" width="50px" height="50px"></a>
+                <div class="input">
+                    <p>Angka-1:<input type="text" id="numb1"></p>
+                    <p>Angka-2:<input type="text" id="numb2"></p>
+                    <p>Angka-3:<input type="text" id="numb3"></p>
+                    <p>Angka-4:<input type="text" id="numb4"></p>
+                    <p>Angka-5:<input type="text" id="numb5"></p>
+                </div>
+                <div class="button">
+                    <button type="button" onclick="output()">Input</button>
+                    <!-- <button type="button" onclick="ubah()">Reset</button> -->
+                    <input type="button" value="Ubah" onclick="ubah()">
+                </div>
+                <div class="out">
+                    <p id="outmin"></p>
+                    <p id="outmax"></p>
+                    <p id="outmean"></p>
+                    <p id="outmed"></p>
+                    <p id="test"></p>
+                </div>
+            </form>
+        
+            <script>
+                let array = [];
+                function input(){
+                    x1 = document.getElementById("numb1").value;
+                    x2 = document.getElementById("numb2").value;
+                    x3 = document.getElementById("numb3").value;
+                    x4 = document.getElementById("numb4").value;
+                    x5 = document.getElementById("numb5").value;
+                    array.push(x1,x2,x3,x4,x5);
+                }
+                function output(){
+                    max();
+                    min();
+                    mean();
+                    median();
+                }
+                function ubah(){
+                    array.length = 0;
+                    document.getElementById("form").reset();
+                    document.getElementById("outmin").innerHTML = " ";
+                    document.getElementById("outmax").innerHTML = " ";
+                    document.getElementById("outmean").innerHTML = " ";
+                    document.getElementById("outmed").innerHTML = " ";
+                }
+                function max(){
+                    input();
+                    var max = Math.max.apply(Math, array);
+                    document.getElementById("outmax").innerHTML = "Nilai Maximum = "+ max;
+                }
+                function min(){
+                    input();
+                    var min = Math.min.apply(Math, array);
+                    document.getElementById("outmin").innerHTML = "Nilai Minimum  = "+ min;
+                }
+                function mean(){
+                    input();
+                    array;
+                    var sum = 0;
+                    for( var i = 0; i < array.length; i++ ){
+                        sum += parseFloat(array[i]);
+                    }
+                    var avg = (sum/array.length).toFixed(2);
+                    // console.log(sum);
+                    document.getElementById("outmean").innerHTML = "Nilai Rata-Rata  = "+ avg;
+                }
+                function median(){
+                    input();
+                    array;
+                    if(array.length === 0) return 0;
+        
+                    array.sort(function(a,b){
+                         return a-b;
+                    });
+        
+                    var half = Math.floor(array.length / 2);
+        
+                    if(array.length % 2){
+                        return array[half];
+                    }
+                    document.getElementById("outmed").innerHTML = "Nilai Median = " + array[half-1];
+                    // console.log(array[half-1]);
+                }
+                // console.log(median());
+                
+            </script>
+    </body>
+</html>
