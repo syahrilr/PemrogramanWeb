@@ -1,0 +1,20 @@
+body{
+    color: rgb(17, 16, 16);
+    font-style: unset;
+    background-image: url(images/020-corona-virus-dpd.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#btn{
+    margin: 50px;
+}
+
+#full-row{
+    margin-top: 50px;
+}
+
+.shadow{
+    box-shadow: 5px 5px 8px rgb(183, 183, 255);
+    /* text-align: center; */
+}
